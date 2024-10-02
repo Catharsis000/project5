@@ -10,8 +10,8 @@ func main() {
 	srv := service.New()
 
 	mux.HandleFunc("/vote", srv.Vote)
-
 	mux.HandleFunc("/stats", srv.Stats)
-	_ = http.ListenAndServe(":9000", mux)
+
+	http.ListenAndServe(":9000", mux)
 
 }

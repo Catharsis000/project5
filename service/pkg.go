@@ -16,7 +16,7 @@ type srv struct {
 func (s *srv) Vote(w http.ResponseWriter, r *http.Request) {
 
 	// check request method
-	if r.Method != http.MethodPost {
+	if r.Method != http.MethodPost { // если метод не post, то выдаст ошибку
 		w.WriteHeader(http.StatusMethodNotAllowed)
 
 		return
@@ -24,11 +24,11 @@ func (s *srv) Vote(w http.ResponseWriter, r *http.Request) {
 
 	w.Write([]byte("Hello Server1657"))
 
-	req := struct {
+	req := struct { // в структуру локальную записываем эти данные, присланные в post
 		CandidateID uint64 `json:"candidate_id"`
 		Passport    string `json:"passport"`
 	}{}
-	// get request body
+	// get request body вычитываем тело post
 	raw, err := io.ReadAll(r.Body)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -36,7 +36,7 @@ func (s *srv) Vote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := json.Unmarshal(raw, &req); err != nil {
+	if err := json.Unmarshal(raw, &req); err != nil { // раскоживание данных, чтобы замаршалить в структуру выше. в роу передаём данне и указываем структуру, куда будем маршалить
 		w.WriteHeader(http.StatusInternalServerError)
 
 		return
@@ -47,7 +47,7 @@ func (s *srv) Vote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	s.mu.Lock()
+	s.mu.Lock() // делаем счётчик, чтобы никто первее нас не положил данные в структуру
 	s.stats[req.CandidateID]++
 	s.mu.Unlock()
 
