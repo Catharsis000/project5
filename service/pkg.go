@@ -22,8 +22,6 @@ func (s *srv) Vote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("Hello Server1657"))
-
 	req := struct { // в структуру локальную записываем эти данные, присланные в post
 		CandidateID uint64 `json:"candidate_id"`
 		Passport    string `json:"passport"`
@@ -36,7 +34,8 @@ func (s *srv) Vote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := json.Unmarshal(raw, &req); err != nil { // раскоживание данных, чтобы замаршалить в структуру выше. в роу передаём данне и указываем структуру, куда будем маршалить
+	if err := json.Unmarshal(raw, &req); err != nil { // раскоживание данных, чтобы замаршалить в
+		// структуру выше. в роу передаём данне и указываем структуру, куда будем маршалить
 		w.WriteHeader(http.StatusInternalServerError)
 
 		return
@@ -64,15 +63,16 @@ func (s *srv) Stats(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	vals := r.URL.Query()
-	if vals.Has(candID) {
-		id, err := strconv.ParseUint(vals.Get(candID), 10, 64)
+	vals := r.URL.Query() // куери параметры для запросы статы на конкретного кандидата
+	if vals.Has(candID) { // если в валс есть кандидат айди, то он нам его возвращает
+		id, err := strconv.ParseUint(vals.Get(candID), 10, 64) // всё что приходит в куери
+		// параметрах представленно в виде строки. Нам надо законвертить строку в юинт
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 		}
 
-		s.mu.RLock()
-		candStats := s.stats[id]
+		s.mu.RLock()             // лочим мьютекс, чтобы считать мапу для её отправки
+		candStats := s.stats[id] // айди законвертированная куери
 		s.mu.RUnlock()
 
 		raw, err := json.Marshal(candStats)
@@ -100,7 +100,7 @@ func (s *srv) Stats(w http.ResponseWriter, r *http.Request) {
 	w.Write(raw)
 }
 
-func New() srv {
+func New() srv { // конструктор указывающийся в майне
 	return srv{
 		mu:    &sync.RWMutex{},
 		stats: make(map[uint64]uint),
