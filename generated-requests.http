@@ -1,0 +1,138 @@
+# curl -i -X GET localhost:9000/stats
+GET localhost:9000
+
+###
+
+
+
+
+
+# curl -i -X POST -d '{"passport":"pass", "candidate_id": 1}' localhost:9000/vote
+POST localhost:9000/vote
+Content-Type: application/x-www-form-urlencoded
+
+{"passport":"pass", "candidate_id": 1}
+
+<> 2024-10-03T025719.200.txt
+<> 2024-10-03T025717.200.txt
+<> 2024-10-03T025715.200.txt
+<> 2024-10-03T025709.200.txt
+<> 2024-10-03T025706.200.txt
+<> 2024-10-03T025703.200.txt
+<> 2024-10-03T025343.200.txt
+
+###
+
+
+
+
+
+# curl -i -X GET 'localhost:9000/stats?candidate_id=1'
+GET localhost:9000/stats?candidate_id=1
+
+<> 2024-10-03T025725.200.txt
+<> 2024-10-03T025723.200.txt
+<> 2024-10-03T025711.200.txt
+<> 2024-10-03T025658.200.txt
+<> 2024-10-03T025218.200.txt
+
+###
+
+
+
+
+
+# curl -i -X GET 'localhost:9000/stats?candidate_id=1'
+GET localhost:9000/stats?candidate_id=1
+
+<> 2024-10-03T023203.200.txt
+
+###
+
+
+
+
+
+
+# curl -i -X GET localhost:9000/stats?candidate_id=1
+GET localhost:9000/stats
+
+<> 2024-10-03T022939.200.txt
+
+###
+
+
+
+
+
+
+# curl -i -X POST -d '{"passport":"pass", "candidate_id": 1}' localhost:9000/vote
+POST localhost:9000/vote
+Content-Type: application/x-www-form-urlencoded
+
+{"passport":"pass", "candidate_id": 1}
+
+<> 2024-10-03T022809.200.txt
+<> 2024-10-03T022806.200.txt
+<> 2024-10-03T022515.200.txt
+<> 2024-10-03T021629.200.txt
+
+###
+
+
+
+
+
+
+GET localhost:9000/stats
+
+
+
+
+# curl -X POST -d '{"passport":"pass", "candidate_id": 1}' localhost:9000/vote
+POST localhost:9000/vote
+Content-Type: application/x-www-form-urlencoded
+
+{"passport":"pass", "candidate_id": 1}
+
+<> 2024-10-03T022523.200.txt
+<> 2024-10-03T021529.200.txt
+<> 2024-10-03T021400.200.txt
+
+###
+
+
+
+
+
+
+
+POST http://localhost:9000
+{"passport": "pass","candidate_id": 1}
+
+<> 2024-10-03T021242.404.txt
+<> 2024-10-03T021225.404.txt
+###
+POST http://localhost:9000
+Content-Type: application/json
+
+{"passport": "pass","candidate_id": 1}
+
+###
+
+POST http://localhost:9000/api/item
+Content-Type: application/json
+
+
+
+###
+
+
+
+
+<> 2024-10-02T171113.200.txt
+<> 2024-10-02T170511.200.txt
+<> 2024-10-02T162552.200.txt
+<> 2024-10-02T162532.404.txt
+
+###
